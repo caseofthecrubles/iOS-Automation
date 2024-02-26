@@ -1,3 +1,4 @@
+//feb 25 2024
 import Foundation
 import XCTest
 
@@ -59,7 +60,7 @@ final class test_appUITests44LaunchTests: XCTestCase {
                 attachment.lifetime = .keepAlways
                 add(attachment)
             }
-            
+            //wifi now off
             sleep(1)
             
             // turn wifi back on
@@ -77,7 +78,7 @@ final class test_appUITests44LaunchTests: XCTestCase {
             
             sleep(15)
             
-            // Replace "your.bundle.identifier" with the actual bundle identifier of the speed test app.
+            //run speedtest
             let app = XCUIApplication(bundleIdentifier: "com.ookla.speedtest")
             app.launch()
 
@@ -93,7 +94,7 @@ final class test_appUITests44LaunchTests: XCTestCase {
 
             goButton.tap()
             
-            sleep(30)
+            sleep(60)
 
             //t =    38.38s Find the Any (Element at index 25)
             //t =    38.38s Find the Any (Element at index 25)
@@ -107,7 +108,7 @@ final class test_appUITests44LaunchTests: XCTestCase {
                 let elementLabel = targetElement.label
                 
                 // Check for the presence of "Download Speed" and "Upload Speed" in the element's label
-                //Swift contains is also looking at attached charters so a , or anything else will force a non match
+                //Swift contains is also looking at attached charters so a , or anything else will force a non match 
                 if elementLabel.contains("Download") {
                     writeToLogFile("Element Label contains 'Download Speed' and 'Upload Speed': \(elementLabel)")
                     
@@ -145,7 +146,7 @@ final class test_appUITests44LaunchTests: XCTestCase {
                 attachment.lifetime = .keepAlways
                 add(attachment)
             }
-            
+            //wifi is off
             sleep(1)
             
             // turn wifi back on
@@ -163,7 +164,7 @@ final class test_appUITests44LaunchTests: XCTestCase {
             
             sleep(15)
             
-            // Replace "your.bundle.identifier" with the actual bundle identifier of the speed test app.
+            //open speedtest and run a speedtest
             let app = XCUIApplication(bundleIdentifier: "com.ookla.speedtest")
             app.launch()
 
@@ -179,7 +180,7 @@ final class test_appUITests44LaunchTests: XCTestCase {
 
             goButton.tap()
             
-            sleep(30)
+            sleep(60)
 
             //t =    38.38s Find the Any (Element at index 25)
             //t =    38.38s Find the Any (Element at index 25)
@@ -201,7 +202,7 @@ final class test_appUITests44LaunchTests: XCTestCase {
                     // Further parsing can be done here to extract actual speed values
                 } else {
                     writeToLogFile("Element Label does not contain 'Download Speed' and 'Upload Speed': \(elementLabel)")
-                    print("Element_Label_25_MUST_CONTAIN_'Download_Speed'_and_'Upload Speed': \(elementLabel)")
+                    print("Element_Label_25_MUST_CONTAIN_'Download': \(elementLabel)")
                     XCTFail("Element does not contain 'Download Speed' and 'Upload Speed'")
                 }
             } else {
