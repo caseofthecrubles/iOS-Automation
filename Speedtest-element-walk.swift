@@ -2,27 +2,30 @@
 import XCTest
 
 class SpeedTestWalk: XCTestCase {
-
-    func printIdentifiers(of app: XCUIApplication) {
+    // This function searches for the download label to identify the speedtest speed
+    func walkapp(of app: XCUIApplication) -> String? { // Return type is String?
         // Iterate through all elements
         for element in app.descendants(matching: .any).allElementsBoundByIndex {
             // Check if the element is hittable to narrow down the list to visible elements
             if element.isHittable {
-                print("Element Type: \(element.elementType)")
-                print("Identifier: \(element.identifier)")
-                print("Label: \(element.label)")
-                print("Value: \(element.value ?? "nil")")
-                print("----------------------------")
+                // Find the download element:
+                let elementLabel = element.label
+                if elementLabel.contains("results.") {
+                    //print("Element walk has found 'Download_Speed' and 'Upload Speed")
+                    print("FOUND YOUR SPEEDS HERE IS THE Identifier$$: \(element.identifier)")
+                    return elementLabel // Return the found label
+                } else {
+                    print("We didn't find it this time##")
+                    //print("Identifier: \(element.identifier)")
+                }
             }
         }
+        return nil // Return nil if no matching element is found
     }
 
     func testPrintIdentifiers() {
         let app = XCUIApplication(bundleIdentifier: "com.ookla.speedtest")
         app.launch()
-        
-        // Insert steps here to perform after app launch but before taking a screenshot,
-        // such as logging into a test account or navigating somewhere in the app
         
         let goButton = app.buttons["GO"]
 
@@ -34,7 +37,8 @@ class SpeedTestWalk: XCTestCase {
         goButton.tap()
         
         sleep(30)
-
-        printIdentifiers(of: app)
+        
+        let speedtestresult = walkapp(of: app)
+        print("speedtestresult: \(String(describing: speedtestresult))")
     }
 }
